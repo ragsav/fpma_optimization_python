@@ -148,7 +148,7 @@ class Chromosome:
         w = self.w
         a = 0
         b = 0
-        print("-->before mutation",self.w," and old f = ",self.f)
+        # print("-->before mutation",self.w," and old f = ",self.f)
         while(a == b):
             a = random.randint(0, len(w)-1)
             b = random.randint(0, len(w)-1)
@@ -158,7 +158,7 @@ class Chromosome:
         self.w = w
         self.fitness_for_max_ret(df_data,symbols_list)
         self.var(df_data,symbols_list)
-        print("-->after mutation",self.w," and new f = ",self.f)
+        # print("-->after mutation",self.w," and new f = ",self.f)
 
     def fitness_for_max_ret(self,df_data,symbols_list):
         # print("fitting.....")

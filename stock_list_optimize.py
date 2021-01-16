@@ -192,13 +192,13 @@ def init_population(df_data,symbols_list):
         p.normalise_weights()
         p.fitness_for_max_ret(df_data,symbols_list)
         p.var(df_data,symbols_list)
-        print(i, "th child = ", p.w, "fitness = ", p.f)
+        # print(i, "th child = ", p.w, "fitness = ", p.f)
         population.append(p)
     return population
 
 
 def mutate(population,df_data,symbols_list):
-    print("\nMutating......")
+    # print("\nMutating......")
     for i in range(len(population)):
         population[i].mutate_self(df_data,symbols_list)
 
@@ -206,7 +206,7 @@ def mutate(population,df_data,symbols_list):
 
 
 def mating(population,df_data,symbols_list):
-    print("\nMatting.......")
+    # print("\nMatting.......")
     n_population = population
     l = len(population)
     if(l % 2 == 1):
@@ -223,7 +223,7 @@ def mating(population,df_data,symbols_list):
             c = Chromosome(df_data,symbols_list)
             c.w = child
             c.normalise_weights()
-            print("child of ",i,"->",population[i].w,"and",i+1,"->",population[i+1].w," = ",c.w)
+            # print("child of ",i,"->",population[i].w,"and",i+1,"->",population[i+1].w," = ",c.w)
             c.mutate_self(df_data,symbols_list)
             c.fitness_for_max_ret(df_data,symbols_list)
             c.var(df_data,symbols_list)
@@ -236,16 +236,16 @@ def tournament_selection(population):
     n_population = []
     for i in range(5):
         participants = random.sample(population, 5)
-        print(">>>>>>>>-----participants are....")
-        for p in participants:
-            print("f = ", p.f, " and w = ", p.w)
+        # print(">>>>>>>>-----participants are....")
+        # for p in participants:
+        #     print("f = ", p.f, " and w = ", p.w)
 
         participants.sort(key=lambda x: x.f, reverse=True)
-        print("--> winner no.", i, " = ",
-              participants[0].w, " f =", participants[0].f)
-        print(">>>>>>>>-----Remaining populations are....")
-        for p in population:
-            print("f = ", p.f, " and w = ", p.w)
+        # print("--> winner no.", i, " = ",
+        #       participants[0].w, " f =", participants[0].f)
+        # print(">>>>>>>>-----Remaining populations are....")
+        # for p in population:
+        #     print("f = ", p.f, " and w = ", p.w)
 
         n_population.append(participants[0])
         population.remove(participants[0])
@@ -260,23 +260,23 @@ def tournament_selection(population):
 
 def GA(df_data,symbols_list,g):
     gp = []
-    print("starting GA>>>>>>")
+    # print("starting GA>>>>>>")
     population = init_population(df_data,symbols_list)
     for i in range(g):
 
         print("generation = ", i)
 
         population = mating(population,df_data,symbols_list)
-        print("Population after mating and mutation is......")
-        population.sort(key=lambda x: x.f, reverse=True)
-        for p in population:
-            print("f = ", p.f, " and w = ", p.w)
+        # print("Population after mating and mutation is......")
+        # population.sort(key=lambda x: x.f, reverse=True)
+        # for p in population:
+        #     print("f = ", p.f, " and w = ", p.w)
         random.shuffle(population)
         population = tournament_selection(population)
         population.sort(key=lambda x: x.f, reverse=True)
-        print("Population after selection is......")
-        for p in population:
-            print("f = ", p.f, " and w = ", p.w)
+        # print("Population after selection is......")
+        # for p in population:
+        #     print("f = ", p.f, " and w = ", p.w)
         print("best = ", population[0].f, " risk = ", population[0].v)
         population[0].var(df_data,symbols_list)
         gp.append(population[0])

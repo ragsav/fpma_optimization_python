@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify
-from firebase_admin import credentials, firestore, initialize_app
+
 from flask import Response, json, request, jsonify, Flask
 import math
 import random

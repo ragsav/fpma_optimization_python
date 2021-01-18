@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "financialportfoliomanage-80efb",
+  "private_key_id": "9c1207033c02c0b39fae91666e1490b2f9386408",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD7c0GyjndhGG4L\nrbCwPZsF27YM4Ngge2O5ys9XTkG0eOdFyCzlkj2qHXKntBo0+UltZmgI/vSUmk57\n7EsJkqXuh/8vaQ48VyEunV/Qc0Iz3lP2qDC5FN1Jq8RvTMKCkQFTzqcFFD0gjm1g\nP8hR3eZbKUvNJyrnntmXBVXshlzAOGQFmSkHUUR/QX7TXwuqKt34Q8gXes3cIebJ\nZt+C+RJHI/gz2d3OdZXmajnPoavmR1dKSuakvOoRd3dD3VbImUC/hLOv563Sq34l\nn+aHb5axYJTWB7mTuaeMhUPB6gRnJS2y8LrM9NFeZouptuOGWlfqUBpW2pIYNYZH\nq3pwMUVZAgMBAAECggEAQdo0BPrJqfyXaWiSIv3nWRfq7CGAiLU372L9fSxqCcU2\nMHDVzUPI8YHn0qLY0DHPOJ7+tQhsbnShBFRkbHvjB/7G5pg5WbUp5AbkHnfpCSN7\nUthGdlpP/+jDt7BfKommUtgGps5fmeSjIXdi04ntN8evaemNk35nFuWXVKv1o4M8\nTNul/gtK6kvvX/SsXPPjPJtqeMUiaRAL8F3mbOJ9JdwURslvHsrUbySb1xpZ+9xY\n/OBAb+cXxozyf4KVaOkA1RGbw/zlAWBnx2qQyHIblgt0yE6oNc3kBFIPb0aL5J9d\niAhqPlAylyXQjq/paWrkKcMXp00bzMCVQ7PnPweCPwKBgQD/6xVCk4I2twjUv5aN\nMjgijWJc3Y2YfHpnI4nmYRQ2jpodOHfWGj36+2WIPrATe7qvfojCq+ri5hXXvfKN\nUesoflR6fO6U6T+VkgCUWTq+d8mdW8aje5y9qMqyYhOjCG6Q/osvCNasQ3LdhCi2\nIrR928ZhlezJdg49o2sjVUUjcwKBgQD7h87y+nm3VM704Sb4fy2q2LrgWLIHcFZ4\niNkEKHcppgKdnVpwhp08MN+0KIabKjjRgsnt209WO9RlbancjixOFUkt6CAUKD8T\n+cAOqnfQbe1YHicYlANw2woXw6qSRmPUWv6l7Js92ikxjRVcfppV/mkgGpTMDv4f\n4Y73p735AwKBgQD8BGrJRy3h59lgeNMvdJbnH8gPn3ZDBcIcM1knb85R85g80lDg\nnLMQp+TSiLkoVp3/GGJhIp+Klf5ImJt1I4iqNc3HWaQxLIkbJ84+SKiazKfUuH4i\nnCY8dy41AHRKBpGrY5940AFnXnyNPApDYmXP00/G5bdqpUFc3cMx5lTRlQKBgHYG\no/Uf0z1Tbkk53S99fdBNImNjOyaCcBDfJfXthvzkCRYsX+OtRtqXlGDVI1Rr2310\nAYy6+99a868kZjA4BlIdatk/ss3ClNaqupQnKVGEQ3q1q2K9EWBDZ9j+12sL3Iwo\nppT1EWNUmz/FE+DzBziSyIFn96pI3rXXAV70NxBBAoGBAJ2aBODT8bcXVEtmwnbQ\nqvFNRP8i7ZFNSxnMKS9EC4W/eA07T5lIavE6u57Zd0Bshhm5xpddnqullt9jDfoq\n5uJboOq6+o3Ys3WH5sImy7ZEF9h5auuF+BR6Bt6qsO5vLm8ieF368H3tAfpiBZoy\n1fndTvYUmv3Yp1L7CW4jQ2lO\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-m2vh9@financialportfoliomanage-80efb.iam.gserviceaccount.com",
+  "client_id": "116897150009000399017",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-m2vh9%40financialportfoliomanage-80efb.iam.gserviceaccount.com"
+}

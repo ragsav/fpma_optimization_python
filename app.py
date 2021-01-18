@@ -1,6 +1,11 @@
 from flask import Flask
 
+import atexit
 
+# v2.x version - see https://stackoverflow.com/a/38501429/135978
+# for the 3.x version
+from firebase_admin import credentials, firestore, initialize_app
+from apscheduler.scheduler import Scheduler
 
 import flask
 from flask import request, jsonify
@@ -23,8 +28,59 @@ app = Flask(__name__)
 from stock_list_optimize import *
 
 
+request_queue=[]
 
 
+cred = credentials.Certificate('fcma_key.json')
+default_app = initialize_app(cred)
+db = firestore.client()
+# todo_ref = db.collection('todos')
+
+
+cron = Scheduler(daemon=True)
+cron.start()
+
+
+def optimize_queue(request_queue):
+
+	try:
+		request = request_queue.pop(0)
+		uid = request['uid']
+		symbols_list = request['symbols_list']
+		start_date = request['start']
+		end_date = request['end']
+		gen = request['gen']
+		iterations = request['iterations']
+		p = request['p_size']
+		start = datetime(start_date[0], start_date[1], start_date[2])
+		end = datetime(end_date[0], end_date[1], end_date[2])
+
+		df_data = get_data(symbols_list,start,end)
+		print("->starting GA for user {}".format(uid))
+		gp = GA(df_data,symbols_list,gen)
+		gp.sort(key=lambda x: x.f, reverse=True)
+
+		ret_raw = get_ret(df_data,symbols_list)
+		std_raw = get_std(df_data,symbols_list)
+		recommendation_list = gp[0].w.tolist()
+
+		# print(ret_raw,std_raw,recommendation_list,symbols_list)
+		for i in range(len(recommendation_list)):
+			recommendation_list[i] = "{},{},{},{}".format(symbols_list[i],recommendation_list[i],ret_raw[i],std_raw[i])
+		# print(ret_raw,std_raw,recommendation_list,symbols_list)
+
+		db.collection('users').document(uid).update({'recommendation_list': recommendation_list})
+
+	except Exception as e:
+		print(e)
+
+    
+
+
+
+@cron.interval_schedule(seconds=10)
+def job_function():
+    optimize_queue(request_queue)
 
 
 
@@ -33,43 +89,26 @@ def hello_world():
     return 'Hello World!'
 
 
-
-
-
-
-
 @app.route('/api/optimise', methods=['POST'])
 def optimise():
 
-    result = []
+    request2 = {}
     try:
-        print("->started server")
-        # global symbols_list
-        symbols_list = request.json.get('symbols_list')
-        # global df_data
-        
-        start_date = request.json.get('start')
-        end_date = request.json.get('end')
-        gen = request.json.get('gen')
-        iterations = request.json.get('iterations')
-        p = request.json.get('p_size')
-        # global start
-        start = datetime(start_date[0], start_date[1], start_date[2])
-        # global end
-        end = datetime(end_date[0], end_date[1], end_date[2])
-        # global p_size
-        # p_size = p
-        # global g
-        # g = gen
-        df_data = get_data(symbols_list,start,end)
-        print("->df_data = ", df_data)
-        print("->symbols_list = ", symbols_list)
 
-        print("->starting GA")
-        gp = GA(df_data,symbols_list,gen)
-        gp.sort(key=lambda x: x.f, reverse=True)
+    	print("--> request for optimization recieved")
 
-        return jsonify(gp[0].w.tolist()), 200
+    	request2['uid'] = request.json.get('uid')
+    	request2['symbols_list'] = request.json.get('symbols_list')
+    	request2['start'] = request.json.get('start')
+    	request2['end'] = request.json.get('end')
+    	request2['gen'] = request.json.get('gen')
+    	request2['iterations'] = request.json.get('iterations')
+    	request2['p_size'] = request.json.get('p_size')
+    	global request_queue
+    	request_queue.append(request2)
+    	print("--> request queued")
+    	return jsonify("success"), 200
+
     except Exception as e:
         return f"An Error Occured: {e}"
 

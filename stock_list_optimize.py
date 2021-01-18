@@ -123,6 +123,13 @@ def portfolio_var(df_data,symbols_list,W):
     # print("port_var = ", port_var)
     return port_var
 
+def get_ret(df_data,symbols_list):
+    ret = []
+    for ticker in symbols_list:
+        r = df_data[ticker].pct_change().mean()
+        ret.append(r)
+    return ret
+
 
 def get_weighted_ret(df_data,symbols_list,W):
     ret = []

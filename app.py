@@ -22,10 +22,13 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn
 
+from stock_list_optimize import *
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-from stock_list_optimize import *
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 request_queue=[]
@@ -44,7 +47,9 @@ cron.start()
 def optimize_queue(request_queue):
 
 	try:
+
 		request = request_queue.pop(0)
+		print(request)
 		uid = request['uid']
 		symbols_list = request['symbols_list']
 		start_date = request['start']
@@ -55,6 +60,7 @@ def optimize_queue(request_queue):
 		start = datetime(start_date[0], start_date[1], start_date[2])
 		end = datetime(end_date[0], end_date[1], end_date[2])
 
+		print(end)
 		df_data = get_data(symbols_list,start,end)
 		print("->starting GA for user {}".format(uid))
 		gp = GA(df_data,symbols_list,gen)
@@ -88,14 +94,15 @@ def job_function():
 def hello_world():
     return 'Hello World!'
 
-
+@cross_origin()
 @app.route('/api/optimise', methods=['POST'])
 def optimise():
 
     request2 = {}
     try:
 
-    	print("--> request for optimization recieved")
+    	print(request.json)
+
 
     	request2['uid'] = request.json.get('uid')
     	request2['symbols_list'] = request.json.get('symbols_list')

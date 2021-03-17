@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\Raghav\Desktop\first_flask_app\venv"
+set "VIRTUAL_ENV=C:\Users\Raghav\Desktop\fpma_optimization_python\venv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

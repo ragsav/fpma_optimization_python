@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\Raghav\Desktop\first_flask_app\venv'
+VIRTUAL_ENV='C:\Users\Raghav\Desktop\fpma_optimization_python\venv'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
